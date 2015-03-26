@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
+  devise_for :admins
+
+  authenticated :admin do
+  resources :tokens, only: [:new, :create, :edit, :update, :destroy]
+  end
 
   # resources :tokens, only: [:create, :destroy] do
   # end
