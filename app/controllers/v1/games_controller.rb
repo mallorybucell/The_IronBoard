@@ -1,15 +1,18 @@
 module V1
-
   class GamesController < ApiController
 
     def create
-      binding.pry
       head :ok
     end
 
     def list
+      @games = Game.all
     end
 
+    def show
+      @game = Game.find(params[:id])
+    end
+  
   end
 
 end

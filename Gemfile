@@ -23,6 +23,7 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'factory_girl_rails'
   gem 'spring'
+   gem 'faker'
 end
 
 group :test do
