@@ -21,5 +21,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'static_pages#home'
+  root 'static_pages#home' 
 end
