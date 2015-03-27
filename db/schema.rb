@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20150327034738) do
     t.string   "username"
     t.string   "sex"
     t.string   "avatar_url"
+    t.text     "github_data"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
