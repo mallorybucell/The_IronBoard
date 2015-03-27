@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   scope :api do
+    get '/test'                     =>   'api#test'
     namespace :v1 do
       get '/players'                  => 'players#index'
       get '/players/:id'              => 'players#show'
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
       get   '/games/:gamename'        =>  'games#index'
       get   '/games/recent'           =>  'games#recent'
       # get   '/games/:gamename/recent' =>  
+
+      
     end
   end
 
