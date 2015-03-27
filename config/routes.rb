@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  devise_for :users
   devise_for :admins
 
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
@@ -11,7 +10,6 @@ Rails.application.routes.draw do
   end
 
   scope :api do
-    # get '/test'                     =>   'api#test'
     namespace :v1 do
       get '/players'                  => 'players#index'
       get '/players/:id'              => 'players#show'
