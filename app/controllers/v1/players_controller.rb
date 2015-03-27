@@ -11,7 +11,7 @@ module V1
     end
 
     def recent_games
-      lim = params[:limit] || 20
+      lim = params[:limit].to_i || 20
       user = User.find(:id)
       @games = user.games.order(created_at: :desc).limit(lim)
     end
