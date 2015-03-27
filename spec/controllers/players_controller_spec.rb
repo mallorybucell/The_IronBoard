@@ -71,20 +71,20 @@ RSpec.describe V1::PlayersController do
     #FIXME this last assertion seems wonky
   end
 
-  it 'requires a valid token before performing actions' do
+  # it 'requires a valid token before performing actions' do
 
-    key = "d89f8712eb03c0b0b1077480d46f9cb8e7724359afe7ae6c"
-    token = Token.create!(admin_id: 1, key: key, description: "test")
+  #   key = "d89f8712eb03c0b0b1077480d46f9cb8e7724359afe7ae6c"
+  #   token = Token.create!(admin_id: 1, key: key, description: "test")
 
-    get :index, { token: token.key }
-    expect(response.code.to_i).to eq 200
+  #   get :index, { token: token.key }
+  #   expect(response.code.to_i).to eq 200
 
-    token.update!(active: false)
+  #   token.update!(active: false)
 
-    get :index, { token: token.key }
-    expect(response.code.to_i).to eq 404
+  #   get :index, { token: token.key }
+  #   expect(response.code.to_i).to eq 404
 
-  end
+  # end
 
   # it 'handles errors gracefully' do
   # end
