@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :game do
-    name ""
-game_data ""
-game_summary ""
-date_played "2015-03-26 14:46:30"
+    name  { ["Splendor", "Race for the Galaxy"].sample }
+    game_data "none"
+    game_summary "placeholder text"
+    sequence(:date_played) { |n| Datetime.new(2015, 3, n, Time.now) }
   end
 
 end
