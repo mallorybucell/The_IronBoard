@@ -1,5 +1,6 @@
 module V1
   class PlayersController < ApiController
+    
     def index
       @users = User.all
     end
@@ -10,7 +11,9 @@ module V1
     end
 
     def recent_games
-      @games = User.games
+      lim = params[:limit] || 20
+      user = User.find(:id)
+      @games = user.games.order(created_at: :desc).limit(lim)
     end
   end
 end
