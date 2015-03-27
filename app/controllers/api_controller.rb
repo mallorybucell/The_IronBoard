@@ -1,6 +1,6 @@
 class ApiController < ActionController::Base
   before_action :hardcode_json_format
-  # before_action :authenticate_token!
+  before_action :authenticate_token!
 
   rescue_from StandardError do |e|
     render json: {
