@@ -21,5 +21,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get   '/invite'   => 'static_pages#new',    as: 'new_invite'
+  post  '/invite'   => 'static_pages#create', as: 'create_invite'
+
   root 'static_pages#home' 
 end
