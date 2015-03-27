@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
       :text => "Hello fellow IronYarder!\n\nI love playing games and would like to keep track of our game history. Visit our website so we can log our plays.\n\nFrom #{username},\n\nThanks, The IronBoard.",
       :to => [
         {
-          :email=> "#{params['email']}",
+          :email=> "#{params['user']['email']}",
           :name => "#{params['name']}"
         }
       ],

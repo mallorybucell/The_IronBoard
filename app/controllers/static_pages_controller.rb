@@ -17,6 +17,6 @@ class StaticPagesController < ApplicationController
 
 private
   def static_page_params
-    params.permit(:email, :name)
+    params.permit(:name, user: :email)
   end
 end
