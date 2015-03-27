@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise  :database_authenticatable, :registerable,
+  devise  :database_authenticatable,
           :recoverable, :rememberable, :trackable, :validatable,
           :omniauthable, omniauth_providers: [:github]
 
@@ -22,7 +22,6 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    binding.pry
     User.where(email: auth.info.email).first_or_create! do |u|
       u.email              = auth.info.email
       u.username           = auth.info.nickname
