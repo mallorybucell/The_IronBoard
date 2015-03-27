@@ -1,3 +1,5 @@
+require 'mandrill'
+
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -18,6 +20,11 @@ class User < ActiveRecord::Base
     else
       self.avatar_url = 'http://www.medgadget.com/wp-content/uploads/2013/05/Iron-Yard.png'
     end
+  end
+
+  def send_invite_email static_page_params
+    m = Mandrill::API.new(ENV.fetch "MANDRILL_APIKEY")
+    m.messages.send(generate_invite_email(static_page_params))
   end
 
   def generate_invite_email params
