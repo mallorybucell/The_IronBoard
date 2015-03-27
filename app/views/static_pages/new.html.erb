@@ -2,7 +2,7 @@
 <%= form_tag(create_invite_path) do %>
   <%= label_tag(:name, "Name:") %>
   <%= text_field_tag(:name) %>
-  <%= label_tag(:email, "Email:") %>
-  <%= text_field_tag(:email) %>
+  <%= label_tag(:user, "Email:") %>
+  <%= email_field(:user, :email) %>
   <%= submit_tag("Submit") %>
 <% end %>

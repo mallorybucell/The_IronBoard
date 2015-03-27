@@ -1,3 +1,5 @@
+require 'mandrill'
+
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -20,6 +22,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def send_invite_email static_page_params
+    m = Mandrill::API.new(ENV.fetch "MANDRILL_APIKEY")
+    m.messages.send(generate_invite_email(static_page_params))
+  end
+
   def generate_invite_email params
     {
       :subject => "Join the IronBoard",
@@ -27,7 +34,7 @@ class User < ActiveRecord::Base
       :text => "Hello fellow IronYarder!\n\nI love playing games and would like to keep track of our game history. Visit our website so we can log our plays.\n\nFrom #{username},\n\nThanks, The IronBoard.",
       :to => [
         {
-          :email=> "#{params['email']}",
+          :email=> "#{params['user']['email']}",
           :name => "#{params['name']}"
         }
       ],

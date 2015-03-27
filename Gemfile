@@ -13,7 +13,10 @@ gem 'devise'
 gem 'figaro'
 gem 'activesupport'
 gem 'slim-rails'
+
 gem 'mandrill-api'
+gem 'sidekiq'
+gem 'sinatra', require: nil
 
 
 group :development, :test do

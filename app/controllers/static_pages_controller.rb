@@ -1,5 +1,3 @@
-require 'mandrill'
-
 class StaticPagesController < ApplicationController
   def home
   end
@@ -8,14 +6,17 @@ class StaticPagesController < ApplicationController
   end
 
   def create
-    m = Mandrill::API.new(ENV.fetch "MANDRILL_APIKEY")
-    m.messages.send(current_user.generate_invite_email(static_page_params))
-    flash["success"] = "Your email has been sent!"
+    if current_user
+      EmailWorker.perform_async(current_user.id, static_page_params)
+      flash["success"] = "Your email has been sent!"
+    else
+      flash["error"] = "You must log in to use this feature."
+    end
     redirect_to new_invite_path
   end
 
 private
   def static_page_params
-    params.permit(:email, :name)
+    params.permit(:name, user: :email)
   end
 end
