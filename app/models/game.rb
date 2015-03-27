@@ -12,4 +12,24 @@ class Game < ActiveRecord::Base
       g.save!
     end
   end
+
+  def self.new_game data
+    g = Game.new
+    g.name = data["game_name"]
+    g.game_data = data["gamedata"]
+    g.game_summary = data["Game_Summary"]
+    g.date_played = data["date"]
+    g.winner = data["Winner"]
+    g.save!
+
+    data[:gamedata].each do |x|
+      unless x[:user_name] == ""
+        user = User.where(username: x[:user_name]).first
+        user.games << g
+        UserGame.update_wins data["Winner"]
+      end
+    end
+  end
+
+  
 end

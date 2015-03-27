@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       get   '/games/:id'              =>  'games#show'
       get   '/games/:gamename'        =>  'games#index'
       get   '/games/recent'           =>  'games#recent'
-      # get   '/games/:gamename/recent' =>  
+      get   '/games/:gamename/recent' =>  'games#recent_game'
     end
   end
 
@@ -25,4 +25,5 @@ Rails.application.routes.draw do
   post  '/invite'   => 'static_pages#create', as: 'create_invite'
 
   root 'static_pages#home' 
+
 end
