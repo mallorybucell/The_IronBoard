@@ -39,6 +39,12 @@ class User < ActiveRecord::Base
     user_games.where(winner: false).count
   end
 
+  def wins_by_gametype
+  end
+
+  def losses_by_gametype
+  end
+
   def generate_invite_email params
     {
       :subject => "Join the IronBoard",
