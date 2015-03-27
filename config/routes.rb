@@ -26,5 +26,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'static_pages#home' 
+  root 'application#home' 
 end
