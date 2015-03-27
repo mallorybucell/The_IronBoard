@@ -9,10 +9,16 @@ module V1
       @user = User.find(params[:id])
 
     end
+    
 
+    #FIXME Fix specs for recent_games
     def recent_games
-      lim = params[:limit].to_i || 20
-      user = User.find(:id)
+      lim = if params[:limit].to_i > 0
+        params[:limit].to_i
+      else
+        20
+      end
+      user = User.find(params[:id].to_i)
       @games = user.games.order(created_at: :desc).limit(lim)
     end
   end
