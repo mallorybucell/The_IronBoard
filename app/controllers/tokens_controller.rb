@@ -1,6 +1,8 @@
 class TokensController < ApplicationController
   before_filter :authenticate_admin!
 
+  
+
   def create
     current_admin.generate_api_token!(params[:description])
     redirect_to :back, notice: "Token generated"

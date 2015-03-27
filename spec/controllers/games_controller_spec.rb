@@ -32,9 +32,9 @@ describe V1::GamesController do
     expect(json["name"]).to eq "MtG"
     expect(json["id"]).to eq 3
   end
-  it "can list all instances of a specific game"
-  it "can list a number of recent games"
-  it "can list a number of a game's recent games"
+  # it "can list all instances of a specific game"
+  # it "can list a number of recent games"
+  # it "can list a number of a game's recent games"
 
 
 

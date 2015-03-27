@@ -4,10 +4,11 @@ Rails.application.routes.draw do
 
   authenticated :admin do
     resources :tokens, only: [:new, :create, :destroy]
+    get '/tokens/manage'
   end
 
   scope :api do
-    get '/test'                     =>   'api#test'
+    # get '/test'                     =>   'api#test'
     namespace :v1 do
       get '/players'                  => 'players#index'
       get '/players/:id'              => 'players#show'

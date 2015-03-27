@@ -1,5 +1,5 @@
 class Admin < ActiveRecord::Base
-  devise :database_authenticatable, :timeoutable
+  devise :database_authenticatable, :timeoutable, :registerable
 
   has_many :tokens
 
