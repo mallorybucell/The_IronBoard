@@ -20,6 +20,21 @@ class User < ActiveRecord::Base
     end
   end
 
+  def generate_invite_email params
+    {
+      :subject => "Join the IronBoard",
+      :from_name => "The IronBoard",
+      :text => "Hello fellow IronYarder!\n\nI love playing games and would like to keep track of our game history. Visit our website so we can log our plays.\n\nFrom #{username},\n\nThanks, The IronBoard.",
+      :to => [
+        {
+          :email=> "#{params['email']}",
+          :name => "#{params['name']}"
+        }
+      ],
+      :from_email=>"donotreply@theironboard.com"
+    }
+  end
+
   def self.generate_users number
     number.times do |u|
       u = User.new
