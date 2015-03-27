@@ -6,8 +6,12 @@ class StaticPagesController < ApplicationController
   end
 
   def create
-    EmailWorker.perform_async(current_user.id, static_page_params)
-    flash["success"] = "Your email has been sent!"
+    if current_user
+      EmailWorker.perform_async(current_user.id, static_page_params)
+      flash["success"] = "Your email has been sent!"
+    else
+      flash["error"] = "You must log in to use this feature."
+    end
     redirect_to new_invite_path
   end
 
