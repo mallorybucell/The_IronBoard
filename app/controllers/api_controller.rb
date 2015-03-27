@@ -1,6 +1,5 @@
 class ApiController < ActionController::Base
   before_action :hardcode_json_format
-
   # rescue_from StandardError do |e|
   #   render json: {
   #     error: e.message,
@@ -22,4 +21,5 @@ class ApiController < ActionController::Base
   def hardcode_json_format
     request.format = :json
   end
+
 end
