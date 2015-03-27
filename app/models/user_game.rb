@@ -14,5 +14,14 @@ class UserGame < ActiveRecord::Base
     end
   end
 
+  def self.generate_user_games number
+    number.times do |u|
+      ug = UserGame.new
+      ug.user_id = User.all.pluck(:id).sample
+      ug.game_id = Game.all.pluck(:id).sample
+      ug.winner = [true, false].sample
+      ug.save!
+    end
+  end
 
 end
