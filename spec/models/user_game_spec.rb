@@ -5,6 +5,7 @@ RSpec.describe UserGame, type: :model do
     u1 = FactoryGirl.create :user
     u2 = FactoryGirl.create :user
     g1 = FactoryGirl.create :game
+    
     g2 = FactoryGirl.create :game
 
     UserGame.create!(user_id: u1.id, game_id: g1.id)
