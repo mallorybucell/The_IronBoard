@@ -2,7 +2,11 @@ module V1
   class GamesController < ApiController
 
     def create
-      head :ok
+      data = params[:data]
+      Game.new_game data
+      if response.status == 200
+        head :ok
+      end
     end
 
     def list

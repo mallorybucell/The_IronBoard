@@ -98,6 +98,21 @@ describe V1::GamesController do
     expect(json.first["name"]).to eq "MtG"
   end
 
+  it "can add a game instance to the database" do
+    User.create(email:"fake@example.com", password: "password", username: "thomas1")
+    User.create(email:"fake2@example.com", password: "password", username: "gina")
+    
+    post(:create, {:data => { :gamedata => [{"user_name":"thomas1","score":15},{"user_name":"gina","score":10}],:game_name => "Splendor", :winner => "thomas1", :date => "2015/3/15", :game_summary => "blahblahblahblah"} })
+    expect(response.code.to_i).to eq 200
+
+    expect(User.count).to eq 2
+    expect(User.last.username).to eq "gina"
+    expect(Game.count).to eq 1
+    expect(Game.first.name).to eq "Splendor"
+    expect(UserGame.count).to eq 2
+    expect(UserGame.first.winner).to eq true
+
+  end
 
 
 
