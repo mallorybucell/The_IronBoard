@@ -3,13 +3,8 @@ Rails.application.routes.draw do
   devise_for :admins
 
   authenticated :admin do
-  resources :tokens, only: [:new, :create, :edit, :update, :destroy]
+    resources :tokens, only: [:new, :create, :destroy]
   end
-
-  # resources :tokens, only: [:create, :destroy] do
-  # end
-
-  # root 'leaderboard#leaderboard'
 
   scope :api do
     namespace :v1 do

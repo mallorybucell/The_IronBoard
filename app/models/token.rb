@@ -4,7 +4,7 @@ class Token < ActiveRecord::Base
 
   validates :key, presence: true, uniqueness: true
 
-  scope :valid, -> { where(active: true).where("expires_at > ?", Time.now) }
+  scope :valid, -> { where(active: true) }
 
   def disable!
     update active: false
