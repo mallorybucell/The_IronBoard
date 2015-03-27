@@ -4,6 +4,7 @@ FactoryGirl.define do
     game_data "none"
     game_summary "placeholder text"
     sequence(:date_played) { |n| DateTime.new(2015, 3, n, 22, 49, 31) }
+
   end
 
 end

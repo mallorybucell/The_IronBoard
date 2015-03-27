@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise  :database_authenticatable,
+          :recoverable, :rememberable, :trackable, :validatable,
+          :omniauthable, omniauth_providers: [:github]
 
   has_many :user_games
   has_many :games, through: :user_games
@@ -20,6 +21,45 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.from_omniauth(auth)
+    User.where(email: auth.info.email).first_or_create! do |u|
+      u.email              = auth.info.email
+      u.username           = auth.info.nickname
+
+      u.password           = Devise.friendly_token[0,20]
+      u.github_data        = auth.to_h
+    end
+  end
+
+  def total_wins
+    user_games.where(winner: true).count
+  end
+
+  def total_losses
+    user_games.where(winner: false).count
+  end
+
+  def wins_by_gametype
+  end
+
+  def losses_by_gametype
+  end
+
+  def generate_invite_email params
+    {
+      :subject => "Join the IronBoard",
+      :from_name => "The IronBoard",
+      :text => "Hello fellow IronYarder!\n\nI love playing games and would like to keep track of our game history. Visit our website so we can log our plays.\n\nFrom #{username},\n\nThanks, The IronBoard.",
+      :to => [
+        {
+          :email=> "#{params['email']}",
+          :name => "#{params['name']}"
+        }
+      ],
+      :from_email=>"donotreply@theironboard.com"
+    }
+  end
+
   def self.generate_users number
     number.times do |u|
       u = User.new
@@ -30,4 +70,5 @@ class User < ActiveRecord::Base
       u.save!
     end
   end
+
 end

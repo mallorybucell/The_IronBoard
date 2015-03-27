@@ -51,6 +51,11 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
 
   module ExtraTestHelpers
+    def much_splendor
+      1.upto 5 do |i|  
+        FactoryGirl.create :game, name: "Splendor"
+      end
+    end
     def login user
       @request.env["devise.mapping"] = Devise.mappings[:user]
       sign_in user
