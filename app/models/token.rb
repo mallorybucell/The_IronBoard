@@ -1,6 +1,6 @@
 class Token < ActiveRecord::Base
   class Invalid < StandardError; end
-  belongs_to: :admin
+  belongs_to :admin
 
   validates :key, presence: true, uniqueness: true
 
