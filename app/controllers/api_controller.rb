@@ -14,10 +14,6 @@ class ApiController < ActionController::Base
     render json: { error: "Token invalid" }, status: 404
   end
 
-  def test
-    head :ok
-  end
-
 private
 
   def hardcode_json_format
