@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326225705) do
+ActiveRecord::Schema.define(version: 20150327034738) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20150326225705) do
     t.datetime "date_played",  null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "winner"
   end
 
   create_table "tokens", force: :cascade do |t|
@@ -65,6 +66,7 @@ ActiveRecord::Schema.define(version: 20150326225705) do
     t.string   "username"
     t.string   "sex"
     t.string   "avatar_url"
+    t.text     "github_data"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   devise_for :users
   devise_for :admins
+=======
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
+>>>>>>> master
 
   authenticated :admin do
     resources :tokens, only: [:new, :create, :destroy]
@@ -19,11 +23,19 @@ Rails.application.routes.draw do
       get   '/games/:id'              =>  'games#show'
       get   '/games/:gamename'        =>  'games#index'
       get   '/games/recent'           =>  'games#recent'
+<<<<<<< HEAD
       # get   '/games/:gamename/recent' =>  
 
       
+=======
+      get   '/games/:gamename/recent' =>  'games#recent_game'
+>>>>>>> master
     end
   end
 
-  root 'application#home' 
+  get   '/invite'   => 'static_pages#new',    as: 'new_invite'
+  post  '/invite'   => 'static_pages#create', as: 'create_invite'
+
+  root 'static_pages#home' 
+
 end
