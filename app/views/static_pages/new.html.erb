@@ -1,0 +1,8 @@
+<h1>Invite other users to the IronBoard</h1>
+<%= form_tag(create_invite_path) do %>
+  <%= label_tag(:name, "Name:") %>
+  <%= text_field_tag(:name) %>
+  <%= label_tag(:email, "Email:") %>
+  <%= text_field_tag(:email) %>
+  <%= submit_tag("Submit") %>
+<% end %>

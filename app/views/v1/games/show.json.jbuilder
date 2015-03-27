@@ -1,0 +1,1 @@
+json.extract! @game, :id, :name, :game_data, :game_summary, :date_played, :created_at, :updated_at
