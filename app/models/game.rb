@@ -2,9 +2,9 @@ class Game < ActiveRecord::Base
   has_many :user_games
   has_many :users, through: :user_games
 
-  def self.generate_games number
+  def self.generate_games user_id, number
     number.times do |g|
-      g = Game.new
+      g = User.find(user_id).games.new
       g.name = ["splendor", "race for the galaxy"].sample
       g.game_data = Faker::Lorem.words(4)
       g.game_summary = "#{Faker::Lorem.paragraph}\n#{Faker::Lorem.paragraph}"
