@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UserGame, type: :model do
+
   it 'can not have the same user more than once per game' do
     u1 = FactoryGirl.create :user
     u2 = FactoryGirl.create :user
@@ -21,4 +22,5 @@ RSpec.describe UserGame, type: :model do
       UserGame.create!(user_id: u1.id, game_id: g1.id)
     end.to raise_error 
   end
+
 end

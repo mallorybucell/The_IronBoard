@@ -13,6 +13,13 @@
 
 ActiveRecord::Schema.define(version: 20150327034738) do
 
+  create_table "admins", force: :cascade do |t|
+    t.string   "email"
+    t.string   "encrypted_password"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
   create_table "games", force: :cascade do |t|
     t.string   "name",         null: false
     t.text     "game_data",    null: false
@@ -21,6 +28,15 @@ ActiveRecord::Schema.define(version: 20150327034738) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "winner"
+  end
+
+  create_table "tokens", force: :cascade do |t|
+    t.string   "description"
+    t.string   "key"
+    t.boolean  "active",      default: true
+    t.integer  "admin_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "user_games", force: :cascade do |t|

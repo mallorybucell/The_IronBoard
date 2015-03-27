@@ -1,0 +1,35 @@
+
+<% notice %>
+<h1><%= current_admin.email %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th> Key </th>
+      <th> Disabled? </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% current_admin.tokens.each do |t| %>
+      <tr>
+        <td><%= t.key %></td>
+        <td>
+          <%= t.disabled? %>
+          <%= form_tag url: token_path(t), method: :delete do %>
+            <button> Disable </button>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  
+</table>
+
+<%= form_tag tokens_path do %>
+  <%= label_tag :description %>
+  <%= text_field_tag :description %>
+  <button> Generate New Token</button>
+<% end %>
+
+
+

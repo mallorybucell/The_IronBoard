@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
+  devise_for :users
+  devise_for :admins
+=======
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
+>>>>>>> master
 
-  # resources :tokens, only: [:create, :destroy] do
-  # end
-
-  # root 'leaderboard#leaderboard'
+  authenticated :admin do
+    resources :tokens, only: [:new, :create, :destroy]
+    get '/tokens/manage'
+  end
 
   scope :api do
+    # get '/test'                     =>   'api#test'
     namespace :v1 do
       get '/players'                  => 'players#index'
       get '/players/:id'              => 'players#show'
@@ -17,7 +23,13 @@ Rails.application.routes.draw do
       get   '/games/:id'              =>  'games#show'
       get   '/games/:gamename'        =>  'games#index'
       get   '/games/recent'           =>  'games#recent'
+<<<<<<< HEAD
+      # get   '/games/:gamename/recent' =>  
+
+      
+=======
       get   '/games/:gamename/recent' =>  'games#recent_game'
+>>>>>>> master
     end
   end
 
