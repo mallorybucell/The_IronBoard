@@ -29,10 +29,11 @@ RSpec.describe Token, type: :model do
     t1 = a.generate_api_token!("This is a test token.")
     t2 = a.generate_api_token!("This is a 2nd token.")
 #FIXME
-#Sbinding.pry
     expect do
       t2.update!(key: t1.key)
     end.to raise_error ActiveRecord::RecordInvalid
+    expect(t2.valid?).not_to be true
+    t2.reload
 #FIXME
     expect(a.tokens.count).to eq 2
     expect(t2.key_changed?).to be false
